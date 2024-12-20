@@ -4,6 +4,7 @@ import Formulario from './componentes/Formulario';
 import Time from './componentes/Time';
 import Rodape from './componentes/Rodape';
 import { v4 as uuidv4 } from 'uuid';
+import { IoIosArrowDropdownCircle, IoIosArrowDropdown } from "react-icons/io";
 
 function App() {
 
@@ -295,6 +296,12 @@ function App() {
       return colaborador
     }))
   }
+
+  const[cardsVisiveis, setCardsVisiveis]=useState(true)
+
+  const alterarVisibilidade = () => {
+    setCardsVisiveis(!cardsVisiveis)
+  };
   
   return (
     <div>
@@ -304,18 +311,28 @@ function App() {
         times={times.map(time => time.nome)} 
         aoCadastrar={colaborador => setColaboradores([...colaboradores, colaborador])} 
       />
+      
+      
       <section className="times">
-        <h1>Minha organização</h1>
-        {times.map((time, indice) => 
-          <Time 
-            aoFavoritar={resolverFavorito}
-            mudarCor={mudarCorDoTime }
-            key={indice} 
-            time={time} 
-            colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)} 
-            aoDeletar={deletarColaborador}
-          />
-        )}
+        <div className='cabecalho'>
+          <h1>Minha organização</h1>
+          <button className='botao-visibilidade' onClick={alterarVisibilidade}>
+            {cardsVisiveis ? < IoIosArrowDropdown className="icone" /> : <IoIosArrowDropdownCircle className="icone" />}
+          </button>
+        </div>
+        
+        {cardsVisiveis && 
+          times.map((time, indice) => 
+            <Time 
+              aoFavoritar={resolverFavorito}
+              mudarCor={mudarCorDoTime }
+              key={indice} 
+              time={time} 
+              colaboradores={colaboradores.filter(colaborador => colaborador.time === time.nome)} 
+              aoDeletar={deletarColaborador}
+            />
+          )
+        }
       </section>
       <Rodape />
     </div>

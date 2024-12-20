@@ -23,3 +23,27 @@ h1 {
 h1, h2 {
   font-family: 'Prata', serif;
 }
+
+.cabecalho{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px; 
+  gap: 90px;
+}
+
+.botao-visibilidade {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  border: none; /* Remove borda do botão */
+  background: none; /* Remove fundo do botão */
+}
+
+.icone {
+  font-size: 60px; /* Tamanho do ícone */
+  color: #6278F7; /* Cor do ícone */
+}
+
+
+
